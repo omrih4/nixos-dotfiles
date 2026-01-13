@@ -57,9 +57,7 @@ in
 			export CPM_SOURCE_CACHE="/home/omrih/.cache/cpm"
 			export GEODE_SDK="/home/omrih/Documents/geode"
 
-      			if uwsm check may-start; then
-          				exec uwsm start hyprland-uwsm.desktop
-      			fi
+			start-hyprland
       		'';
   };
   home.packages = with pkgs; [
@@ -69,6 +67,7 @@ in
     jetbrains.idea-oss
     inputs.helium.packages.x86_64-linux.default
     zoom-us
+    seahorse
   ];
   programs.obs-studio = {
     enable = true;

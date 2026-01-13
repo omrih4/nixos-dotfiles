@@ -20,14 +20,14 @@
 
   services.nixos-cli.enable = true;
 
+  services.gnome.gnome-keyring.enable = true;
+
   programs.hyprland = {
 	enable = true;
 	xwayland.enable = true;
 	withUWSM = true;
   };
 	
-  xdg.portal = { enable = true; extraPortals = [ pkgs.xdg-desktop-portal-hyprland pkgs.xdg-desktop-portal-gtk ]; };
-
   programs.steam = {
 	enable = true;
   };
@@ -74,7 +74,11 @@
     wl-clipboard
     gh
     mongodb-compass
+    hyprpolkitagent
   ];
+
+  programs.java.enable = true;
+  programs.java.package = pkgs.javaPackages.compiler.temurin-bin.jdk-25;
 
   services.mongodb.enable = true;
   services.mongodb.package = pkgs.mongodb-ce;
