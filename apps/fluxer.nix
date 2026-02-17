@@ -4,7 +4,7 @@
 
   src = pkgs.fetchurl {
     url = "https://api.fluxer.app/dl/desktop/stable/linux/x64/latest/appimage";
-    hash = "sha256-CD6bQ4T8DhJidiOxNRgRDL4obfEZx7hnO0VotVb6lDc=";
+    hash = "sha256-GdoBK+Z/d2quEIY8INM4IQy5tzzIBBM+3CgJXQn0qAw=";
   };
   appimageContents = pkgs.appimageTools.extract {inherit pname version src;};
 in
@@ -30,7 +30,7 @@ in
         autoPatchelfHook
         asar
         # override doesn't preserve splicing https://github.com/NixOS/nixpkgs/issues/132651
-        (buildPackages.wrapGAppsHook.override {inherit (buildPackages) makeWrapper;})
+        (buildPackages.wrapGAppsHook3.override {inherit (buildPackages) makeWrapper;})
       ];
     }
 

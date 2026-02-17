@@ -1,10 +1,15 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -20,36 +25,47 @@
 
   services.nixos-cli.enable = true;
 
+  programs.seahorse.enable = true;
   services.gnome.gnome-keyring.enable = true;
+  services.gnome.gcr-ssh-agent.enable = true;
+
+  services.tailscale.enable = true;
 
   programs.hyprland = {
-	enable = true;
-	xwayland.enable = true;
-	withUWSM = true;
+    enable = true;
+    xwayland.enable = true;
+    withUWSM = true;
   };
-	
+  programs.thunar.enable = true;
+  programs.xfconf.enable = true;
+  services.gvfs.enable = true;
+
   programs.steam = {
-	enable = true;
+    enable = true;
   };
-
-  services.xserver.videoDrivers = ["modesettings" "nvidia" ];
+  
+  services.xserver.videoDrivers = [
+    "modesettings"
+    "nvidia"
+  ];
   hardware = {
-	graphics.enable = true;
-	nvidia = {
-		open = true;
-		prime = {
-			offload.enable = true;
+    graphics.enable = true;
+    nvidia = {
+      open = true;
+      prime = {
+        offload.enable = true;
+	offload.enableOffloadCmd = true;
 
-			intelBusId = "PCI:0:2:0";
-			nvidiaBusId = "PCI:1:0:0";
-		};
-	};
+        intelBusId = "PCI:0:2:0";
+        nvidiaBusId = "PCI:1:0:0";
+      };
+    };
   };
 
   services.libinput.enable = true;
   users.users.omrih = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "input" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       tree
     ];
@@ -75,7 +91,31 @@
     gh
     mongodb-compass
     hyprpolkitagent
+    nodejs
+    nodePackages.pnpm
+    xterm
+
+    wineWow64Packages.stable
+    protontricks
+
+    uv
+
+    # Themes
+    kdePackages.breeze-gtk
+    kdePackages.breeze-icons
+    kdePackages.breeze.qt5
+    kdePackages.breeze
   ];
+  environment.localBinInPath = true;
+  programs.nix-ld = {
+	enable = true;
+	libraries = with pkgs; [
+		(pkgs.runCommand "steamrun-lib" {} "mkdir $out; ln -s ${pkgs.steam-run.fhsenv}/usr/lib64 $out/lib")
+	];
+  };
+
+  programs.appimage.enable = true;
+  programs.appimage.binfmt = true;
 
   programs.java.enable = true;
   programs.java.package = pkgs.javaPackages.compiler.temurin-bin.jdk-25;
@@ -84,10 +124,13 @@
   services.mongodb.package = pkgs.mongodb-ce;
 
   fonts.packages = with pkgs; [
-	font-awesome
+    font-awesome
+    nerd-fonts.fira-code
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
- system.stateVersion = "25.11"; # Did you read the comment?
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+  system.stateVersion = "25.11"; # Did you read the comment?
 }
-

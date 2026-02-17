@@ -6,42 +6,15 @@
 }:
 
 let
-  geode-cli = pkgs.rustPlatform.buildRustPackage {
-    pname = "geode-cli";
-    version = "3.7.1";
+  dotfiles = "${config.home.homeDirectory}/nixos-dotfiles/config";
+  create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
 
-    src = pkgs.fetchFromGitHub {
-      owner = "geode-sdk";
-      repo = "cli";
-      rev = "f75ee37472a50ab469fed937c41252b634e67627";
-			hash = "sha256-1weuW94259dkMhvhzryuO6Pt8XFtfHBtL8KlpxUwRAc=";
-    };
-
-		cargoHash = "sha256-VeKXoCHPwtnCxds7PDIJmjTfun6qs/Od1NkaVgTtOxc=";
-
-    nativeBuildInputs =
-      with pkgs;
-      [
-        pkg-config
-        openssl
-      ];
-
-    buildInputs =
-      with pkgs;
-      [
-        openssl
-      ];
-
-    postInstall = ''
-      mkdir -p $out/share/bash-completion/completions
-      mkdir -p $out/share/zsh/site-functions
-      mkdir -p $out/share/fish/vendor_completions.d
-
-      $out/bin/geode completions bash > $out/share/bash-completion/completions/geode
-      $out/bin/geode completions zsh > $out/share/zsh/site-functions/_geode
-      $out/bin/geode completions fish > $out/share/fish/vendor_completions.d/geode.fish
-    '';
+  configs = {
+    hypr = "hypr";
+    waybar = "waybar";
   };
+
+  fluxer = import ./apps/fluxer.nix { inherit pkgs; };
 in
 {
   home.username = "omrih";
@@ -54,11 +27,8 @@ in
       nixos-switch = "sudo nixos-rebuild switch --flake /home/omrih/nixos-dotfiles#laptop";
     };
     profileExtra = ''
-			export CPM_SOURCE_CACHE="/home/omrih/.cache/cpm"
-			export GEODE_SDK="/home/omrih/Documents/geode"
-
-			start-hyprland
-      		'';
+     			start-hyprland
+            		'';
   };
   home.packages = with pkgs; [
     geode-cli
@@ -67,8 +37,36 @@ in
     jetbrains.idea-oss
     inputs.helium.packages.x86_64-linux.default
     zoom-us
-    seahorse
+    moonlight-qt
+    blockbench
+    vlc
+    termius
+
+    fluxer
+
+    davinci-resolve
   ];
+
+  systemd.user.timers."wallpaper" = {
+    Install.WantedBy = [ "timers.target" ];
+    Timer = {
+      OnCalendar = [
+        "06:00"
+        "18:00"
+      ];
+      Persistent = true;
+      Unit = "wallpaper.service";
+    };
+  };
+
+  systemd.user.services."wallpaper" = {
+    Install.WantedBy = [ "default.target" ];
+    Service = {
+      Type = "oneshot";
+      ExecStart = "/home/%u/nixos-dotfiles/config/hypr/wallpaper.sh";
+    };
+  };
+
   programs.obs-studio = {
     enable = true;
 
@@ -78,21 +76,26 @@ in
       }
     );
   };
+
+  services.ludusavi.enable = true;
+
   programs.vscode = {
     enable = true;
     package = pkgs.vscode.fhsWithPackages (
       ps: with ps; [
         clang
         clang-tools
-	llvm
-	lld
+        llvm
+        lld
         cmake
-        nixfmt-rfc-style
+	nixfmt
         nixd
-	ninja
+        ninja
       ]
     );
   };
-  home.file.".config/hypr".source = ./config/hypr;
-  home.file.".config/waybar".source = ./config/waybar;
+  xdg.configFile = builtins.mapAttrs (name: subpath: {
+    source = create_symlink "${dotfiles}/${subpath}";
+    recursive = true;
+  }) configs;
 }

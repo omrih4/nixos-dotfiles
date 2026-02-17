@@ -1,0 +1,11 @@
+[2026-02-16 21:11:18.976] [info] Using configuration file /home/omrih/.config/waybar/config.jsonc
+[2026-02-16 21:11:18.980] [info] Using CSS file /nix/store/lnn68iswdds3hq26p01298if2rxdz547-waybar-0.14.0/etc/xdg/waybar/style.css
+[2026-02-16 21:11:18.985] [info] Hyprland IPC starting
+[2026-02-16 21:11:18.985] [info] Loading persistent workspaces from Hyprland workspace rules
+[2026-02-16 21:11:18.986] [warning] module hyprland/mode: Unknown module: hyprland/mode
+[2026-02-16 21:11:18.986] [warning] module hyprland/scratchpad: Unknown module: hyprland/scratchpad
+[2026-02-16 21:11:18.986] [warning] 'swap-icon-label' must be a bool.
+[2026-02-16 21:11:18.997] [warning] No battery named BAT2
+[2026-02-16 21:11:19.008] [info] Bar configured (width: 1600, height: 30) for output: eDP-1
+[2026-02-16 21:11:19.008] [error] Item '': No icon name or pixmap given.
+Gdk-Message: 00:28:24.180: Error reading events from display: Broken pipe
