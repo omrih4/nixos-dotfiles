@@ -31,7 +31,6 @@ in
             		'';
   };
   home.packages = with pkgs; [
-    geode-cli
     vesktop
     prismlauncher
     jetbrains.idea-oss
