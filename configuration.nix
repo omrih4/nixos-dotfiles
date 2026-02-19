@@ -17,6 +17,7 @@
   networking.hostName = "laptop";
   networking.networkmanager.enable = true;
   hardware.bluetooth.enable = true;
+  services.dbus.implementation = "broker";
 
   services.power-profiles-daemon.enable = true;
   services.upower.enable = true;
@@ -27,8 +28,6 @@
 
   services.flatpak.enable = true;
 
-  services.nixos-cli.enable = true;
-
   programs.seahorse.enable = true;
   services.gnome.gnome-keyring.enable = true;
   services.gnome.gcr-ssh-agent.enable = true;
@@ -38,7 +37,6 @@
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
-    withUWSM = true;
   };
   programs.thunar.enable = true;
   programs.xfconf.enable = true;
@@ -47,7 +45,7 @@
   programs.steam = {
     enable = true;
   };
-  
+
   services.xserver.videoDrivers = [
     "modesettings"
     "nvidia"
@@ -58,7 +56,7 @@
       open = true;
       prime = {
         offload.enable = true;
-	offload.enableOffloadCmd = true;
+        offload.enableOffloadCmd = true;
 
         intelBusId = "PCI:0:2:0";
         nvidiaBusId = "PCI:1:0:0";
@@ -69,7 +67,10 @@
   services.libinput.enable = true;
   users.users.omrih = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "input" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [
+      "wheel"
+      "input"
+    ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       tree
     ];
@@ -116,10 +117,10 @@
   ];
   environment.localBinInPath = true;
   programs.nix-ld = {
-	enable = true;
-	libraries = with pkgs; [
-		(pkgs.runCommand "steamrun-lib" {} "mkdir $out; ln -s ${pkgs.steam-run.fhsenv}/usr/lib64 $out/lib")
-	];
+    enable = true;
+    libraries = with pkgs; [
+      (pkgs.runCommand "steamrun-lib" { } "mkdir $out; ln -s ${pkgs.steam-run.fhsenv}/usr/lib64 $out/lib")
+    ];
   };
 
   programs.appimage.enable = true;

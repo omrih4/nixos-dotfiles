@@ -9,10 +9,7 @@
       url = "github:amaanq/helium-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-cli = {
-      url = "github:nix-community/nixos-cli";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs =
@@ -20,7 +17,7 @@
       nixpkgs,
       home-manager,
       helium,
-      nixos-cli,
+      catppuccin,
       ...
     }@inputs:
     {
@@ -32,11 +29,15 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.omrih = import ./home.nix;
+              users.omrih = {
+                imports = [
+                  ./home.nix
+                  catppuccin.homeModules.catppuccin
+                ];
+              };
               extraSpecialArgs = { inherit inputs; };
             };
           }
-          nixos-cli.nixosModules.nixos-cli
         ];
       };
     };

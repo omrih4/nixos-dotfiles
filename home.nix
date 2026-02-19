@@ -6,14 +6,6 @@
 }:
 
 let
-  dotfiles = "${config.home.homeDirectory}/nixos-dotfiles/config";
-  create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
-
-  configs = {
-    hypr = "hypr";
-    waybar = "waybar";
-  };
-
   fluxer = import ./apps/fluxer.nix { inherit pkgs; };
 in
 {
@@ -24,12 +16,20 @@ in
     enable = true;
     shellAliases = {
       btw = "echo i use nix btw";
-      nixos-switch = "sudo nixos-rebuild switch --flake /home/omrih/nixos-dotfiles#laptop";
+      nixos-switch = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/omrih/nixos-dotfiles#laptop";
     };
     profileExtra = ''
-     			start-hyprland
-            		'';
+      start-hyprland
+    '';
   };
+
+  wayland.windowManager.hyprland = {
+    enable = true;
+    extraConfig = builtins.readFile ./config/hypr/hyprland.conf;
+  };
+  catppuccin.hyprland.enable = true;
+  programs.starship.enable = true;
+
   programs.direnv.enable = true;
   home.packages = with pkgs; [
     vesktop
@@ -57,8 +57,6 @@ in
     );
   };
 
-  services.ludusavi.enable = true;
-
   programs.vscode = {
     enable = true;
     package = pkgs.vscode.fhsWithPackages (
@@ -68,14 +66,10 @@ in
         llvm
         lld
         cmake
-	nixfmt
+        nixfmt
         nixd
         ninja
       ]
     );
   };
-  xdg.configFile = builtins.mapAttrs (name: subpath: {
-    source = create_symlink "${dotfiles}/${subpath}";
-    recursive = true;
-  }) configs;
 }
