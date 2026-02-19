@@ -16,6 +16,10 @@
 
   networking.hostName = "laptop";
   networking.networkmanager.enable = true;
+  hardware.bluetooth.enable = true;
+
+  services.power-profiles-daemon.enable = true;
+  services.upower.enable = true;
 
   time.timeZone = "Asia/Jerusalem";
 
@@ -79,26 +83,34 @@
     vim
     wget
     kitty
-    waybar
-    git
+
+    # Shell
+    quickshell
+    noctalia-shell
+    # waybar
     hyprpaper
     mako
     rofi
+    hyprpolkitagent
+
+    xterm
+
     pwvucontrol
+
     grim
     slurp
     wl-clipboard
+
     gh
+    git
+
+    uv
     mongodb-compass
-    hyprpolkitagent
     nodejs
     nodePackages.pnpm
-    xterm
 
     wineWow64Packages.stable
     protontricks
-
-    uv
 
     # Themes
     kdePackages.breeze-gtk
