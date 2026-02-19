@@ -30,6 +30,7 @@ in
      			start-hyprland
             		'';
   };
+  programs.direnv.enable = true;
   home.packages = with pkgs; [
     vesktop
     prismlauncher
