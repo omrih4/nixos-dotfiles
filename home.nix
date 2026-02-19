@@ -19,13 +19,15 @@ in
       nixos-switch = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/nixos-dotfiles#laptop";
     };
     profileExtra = ''
-      start-hyprland
+      if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
+        start-hyprland
+      fi
     '';
   };
 
   wayland.windowManager.hyprland = {
     enable = true;
-    extraConfig = ''${builtins.readFile ./config/hypr/hyprland.conf}'';
+    extraConfig = "${builtins.readFile ./config/hypr/hyprland.conf}";
   };
   catppuccin.hyprland.enable = true;
   programs.starship.enable = true;
