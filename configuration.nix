@@ -90,6 +90,8 @@
     noctalia-shell
     hyprpolkitagent
 
+    cliphist
+
     xterm
 
     pwvucontrol
