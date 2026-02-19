@@ -25,7 +25,7 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
-    extraConfig = builtins.readFile ./config/hypr/hyprland.conf;
+    extraConfig = ''${builtins.readFile ./config/hypr/hyprland.conf}'';
   };
   catppuccin.hyprland.enable = true;
   programs.starship.enable = true;
