@@ -16,7 +16,7 @@ in
     enable = true;
     shellAliases = {
       btw = "echo i use nix btw";
-      nixos-switch = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/omrih/nixos-dotfiles#laptop";
+      nixos-switch = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/nixos-dotfiles#laptop";
     };
     profileExtra = ''
       start-hyprland
