@@ -6,15 +6,9 @@
 }:
 
 {
-  imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-  ];
-
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "laptop";
   networking.networkmanager.enable = true;
   hardware.bluetooth.enable = true;
 
@@ -43,24 +37,6 @@
 
   programs.steam = {
     enable = true;
-  };
-
-  services.xserver.videoDrivers = [
-    "modesettings"
-    "nvidia"
-  ];
-  hardware = {
-    graphics.enable = true;
-    nvidia = {
-      open = true;
-      prime = {
-        offload.enable = true;
-        offload.enableOffloadCmd = true;
-
-        intelBusId = "PCI:0:2:0";
-        nvidiaBusId = "PCI:1:0:0";
-      };
-    };
   };
 
   services.libinput.enable = true;

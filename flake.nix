@@ -23,7 +23,27 @@
     {
       nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
         modules = [
-          ./configuration.nix
+          ./hosts/laptop/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.omrih = {
+                imports = [
+                  ./home.nix
+                  catppuccin.homeModules.catppuccin
+                ];
+              };
+              extraSpecialArgs = { inherit inputs; };
+            };
+          }
+        ];
+      };
+
+      nixosConfigurations.pc = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./hosts/pc/configuration.nix
           home-manager.nixosModules.home-manager
           {
             home-manager = {
