@@ -46,9 +46,6 @@
       "wheel"
       "input"
     ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      tree
-    ];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -56,43 +53,16 @@
   programs.firefox.enable = true;
 
   environment.systemPackages = with pkgs; [
+    git
     vim
     wget
-    kitty
-
-    # Shell
-    quickshell
-    noctalia-shell
-    hyprpolkitagent
-
-    cliphist
-
-    xterm
-
-    pwvucontrol
-
-    grim
-    slurp
-    wl-clipboard
-
-    gh
-    git
 
     uv
-    mongodb-compass
     nodejs
     nodePackages.pnpm
 
-    rivalcfg
-
     wineWow64Packages.stable
     protontricks
-
-    # Themes
-    kdePackages.breeze-gtk
-    kdePackages.breeze-icons
-    kdePackages.breeze.qt5
-    kdePackages.breeze
   ];
   environment.localBinInPath = true;
   programs.nix-ld = {
