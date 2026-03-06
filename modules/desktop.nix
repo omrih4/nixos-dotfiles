@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -12,8 +12,7 @@
     termius
 
     # Shell
-    quickshell
-    noctalia-shell
+    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     hyprpolkitagent
 
