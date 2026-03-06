@@ -24,11 +24,21 @@
       fi
     '';
   };
+  programs.kitty = {
+    enable = true;
+    font.name = "FiraCode Nerd Font";
+  };
+
   programs.direnv.enable = true;
   programs.starship.enable = true;
 
+  programs.btop.enable = true;
+  catppuccin = {
+    kitty.enable = true;
+    btop.enable = true;
+  };
+
   home.packages = with pkgs; [
     eza
-    btop
   ];
-}
+}  

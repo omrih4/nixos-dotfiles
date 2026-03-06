@@ -7,7 +7,6 @@
   catppuccin.hyprland.enable = true;
   home.packages = with pkgs; [
     # Terminals
-    kitty
     xterm
     termius
 
