@@ -14,8 +14,6 @@
     # Shell
     inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
 
-    hyprpolkitagent
-
     # Themes
     kdePackages.breeze-gtk
     kdePackages.breeze-icons
