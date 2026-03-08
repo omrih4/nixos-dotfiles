@@ -34,6 +34,7 @@ in
 
     fluxer
 
+    kdePackages.kdenlive
     davinci-resolve
   ];
 }

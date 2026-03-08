@@ -23,6 +23,7 @@
         start-hyprland
       fi
     '';
+    bashrcExtra = ''export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"'';
   };
   programs.kitty = {
     enable = true;
