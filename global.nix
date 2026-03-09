@@ -29,6 +29,7 @@
   virtualisation.docker.enable = true;
   programs.git = {
     enable = true;
+    package = pkgs.git.override { withLibsecret = true; };
     lfs.enable = true;
   };
 
@@ -51,6 +52,7 @@
     enable = true;
     xwayland.enable = true;
   };
+ 
   programs.thunar.enable = true;
   programs.xfconf.enable = true;
   services.gvfs.enable = true;

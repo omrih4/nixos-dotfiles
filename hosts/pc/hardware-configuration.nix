@@ -23,8 +23,8 @@
     "sd_mod"
   ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" "ntsync" ];
-  boot.extraModulePackages = [ ];
+  boot.kernelModules = [ "kvm-intel" "ntsync" "v4l2loopback" ];
+  boot.extraModulePackages = [ pkgs.linuxPackages.v4l2loopback ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/bd03d209-9d07-42eb-8d85-a65de364f24b";
