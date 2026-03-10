@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, config, inputs, ... }:
 {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -13,6 +13,9 @@
       xdg-desktop-portal-gtk 
       xdg-desktop-portal-hyprland
     ];
+  };
+  home.file."${config.home.homeDirectory}/scripts/deafen-discord.sh" = {
+    source = ../scripts/deafen-discord.sh;
   };
   catppuccin.hyprland.enable = true;
   home.packages = with pkgs; [
@@ -32,6 +35,8 @@
     # Screenshot utilities
     grim
     slurp
+
+    libnotify
 
     wl-clipboard
     cliphist
