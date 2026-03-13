@@ -22,7 +22,7 @@ in
     mongodb-compass
     jetbrains.idea
 
-    vesktop
+    equibop
 
     prismlauncher
     blockbench

@@ -14,9 +14,6 @@
       xdg-desktop-portal-hyprland
     ];
   };
-  home.file."${config.home.homeDirectory}/scripts/deafen-discord.sh" = {
-    source = ../scripts/deafen-discord.sh;
-  };
   catppuccin.hyprland.enable = true;
   home.packages = with pkgs; [
     # Terminals
