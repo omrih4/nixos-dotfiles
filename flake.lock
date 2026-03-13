@@ -106,16 +106,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1772020767,
-        "narHash": "sha256-OxeMEMxRJ6dF3UGXVJoNRwxU/F1nOVbdcyX9n8S3Mxk=",
-        "owner": "amaanq",
-        "repo": "helium-flake",
-        "rev": "9d3ef138f70b3540397320d25ead6aa96101371d",
+        "lastModified": 1773306599,
+        "narHash": "sha256-hwVkHXGWlKUCIRqR6v7UePmzQIyfn70TpbyHBZ8TE+Y=",
+        "owner": "x13-me",
+        "repo": "helium-nix",
+        "rev": "fbb22be83a95eb7abc717f8abee5a06317612e79",
         "type": "github"
       },
       "original": {
-        "owner": "amaanq",
-        "repo": "helium-flake",
+        "owner": "x13-me",
+        "repo": "helium-nix",
         "type": "github"
       }
     },
@@ -218,11 +218,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1773408631,
-        "narHash": "sha256-P/YAuqHv4NyIkBMvfOCsXE2bdy3gE5eTgODioXaGMCM=",
+        "lastModified": 1773411261,
+        "narHash": "sha256-+0Vg7Dm63ziCdTIHHQiWiRjqq+uhIK+zstSMyRLM4bc=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "40e546022dd2115f1b7f824ae309ea0115c4d360",
+        "rev": "20e480d732d1bb6282cdc1b012fdd7cbdd6d4ba0",
         "type": "github"
       },
       "original": {

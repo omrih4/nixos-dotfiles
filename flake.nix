@@ -15,7 +15,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     helium = {
-      url = "github:amaanq/helium-flake";
+      url = "github:x13-me/helium-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin = {
