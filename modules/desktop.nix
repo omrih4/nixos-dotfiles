@@ -3,13 +3,12 @@
   config,
   inputs,
   ...
-}:
-{
+}: {
   wayland.windowManager.hyprland = {
     enable = true;
     systemd = {
       enable = true;
-      variables = [ "-all" ];
+      variables = ["-all"];
     };
     settings = {
       "$ipc" = "noctalia-shell ipc call";
@@ -112,44 +111,46 @@
 
       gesture = "3, horizontal, workspace";
 
-      bind = [
-        "$mod, R, exec, $ipc launcher toggle"
-        "$mod SHIFT, V, exec, $ipc launcher clipboard"
-        "$mod, SPACE, exec, $ipc controlCenter toggle"
-        "$mod, Q, exec, kitty"
-        "$mod, C, killactive"
-        "$mod, E, exec, thunar"
+      bind =
+        [
+          "$mod, R, exec, $ipc launcher toggle"
+          "$mod SHIFT, V, exec, $ipc launcher clipboard"
+          "$mod, SPACE, exec, $ipc controlCenter toggle"
+          "$mod, Q, exec, kitty"
+          "$mod, C, killactive"
+          "$mod, E, exec, thunar"
 
-        "$mod, mouse_down, workspace, e+1"
-        "$mod, mouse_up, workspace, e-1"
-        "$mod, S, togglespecialworkspace, magic"
-        "$mod SHIFT, S, movetoworkspace, special:magic"
-        "$mod, V, togglefloating"
-        "$mod, P, pin"
+          "$mod, 0, workspace, 10"
+          "$mod SHIFT, 0, movetoworkspace, 10"
+          "$mod, mouse_down, workspace, e+1"
+          "$mod, mouse_up, workspace, e-1"
+          "$mod, S, togglespecialworkspace, magic"
+          "$mod SHIFT, S, movetoworkspace, special:magic"
+          "$mod, V, togglefloating"
+          "$mod, P, pin"
 
-        # take screenshot - prntscrn or super-shift-p
-        ", Print, exec, grim -g \"$(slurp -d)\" - | wl-copy"
-        "$mod SHIFT, P, exec, grim -g \"$(slurp -d)\" - | wl-copy"
+          # take screenshot - prntscrn or super-shift-p
+          ", Print, exec, grim -g \"$(slurp -d)\" - | wl-copy"
+          "$mod SHIFT, P, exec, grim -g \"$(slurp -d)\" - | wl-copy"
 
-        # deafen discord
-        ", F7, exec, equibop --toggle-deafen"
-      ]
-      ++ (
-        # workspaces
-        # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
-        builtins.concatLists (
-          builtins.genList (
-            i:
-            let
-              ws = i + 1;
-            in
-            [
-              "$mod, code:1${toString i}, workspace, ${toString ws}"
-              "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-            ]
-          ) 9
-        )
-      );
+          # deafen discord
+          ", F7, exec, equibop --toggle-deafen"
+        ]
+        ++ (
+          # workspaces
+          # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
+          builtins.concatLists (
+            builtins.genList (
+              i: let
+                ws = i + 1;
+              in [
+                "$mod, code:1${toString i}, workspace, ${toString ws}"
+                "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+              ]
+            )
+            9
+          )
+        );
 
       bindm = [
         "$mod, mouse:272, movewindow"
