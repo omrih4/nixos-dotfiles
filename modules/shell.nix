@@ -9,7 +9,6 @@
     enable = true;
     shellAliases = {
       btw = "echo i use nix btw";
-      nixos-switch = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/dotfiles#${osConfig.networking.hostName}";
 
       ls = "${pkgs.eza}/bin/eza";
       l = "${pkgs.eza}/bin/eza -lah";

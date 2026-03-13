@@ -87,6 +87,11 @@
 
   programs.firefox.enable = true;
 
+  programs.nh = {
+    enable = true;
+    flake = "/home/omrih/dotfiles";
+  };
+
   environment.systemPackages = with pkgs; [
     vim
     wget
