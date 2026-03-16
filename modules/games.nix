@@ -22,18 +22,18 @@
         nspr
         nss
         pango
-        xorg.libX11
-        xorg.libXcomposite
-        xorg.libXdamage
-        xorg.libXext
-        xorg.libXfixes
-        xorg.libXi
-        xorg.libXrandr
-        xorg.libXrender
-        xorg.libXScrnSaver
-        xorg.libXtst
-        xorg.libxcb
-        xorg.libxshmfence
+        libX11
+        libXcomposite
+        libXdamage
+        libXext
+        libXfixes
+        libXi
+        libXrandr
+        libXrender
+        libXScrnSaver
+        libXtst
+        libxcb
+        libxshmfence
       ];
     })
 
