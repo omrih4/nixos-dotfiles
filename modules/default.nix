@@ -9,8 +9,8 @@ in {
     ./desktop.nix
     ./shell.nix
     ./obs.nix
+    ./vim
     ./vscode.nix
-    ./neovim.nix
     ./games.nix
   ];
 
