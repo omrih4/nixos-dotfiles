@@ -34,5 +34,7 @@ in {
 
     kdePackages.kdenlive
     davinci-resolve
+
+    stremio-linux-shell
   ];
 }
