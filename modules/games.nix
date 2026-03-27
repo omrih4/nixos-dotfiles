@@ -42,5 +42,7 @@
     (inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.rocket-league.override {
       enableBakkesmod = true;
     })
+
+    dolphin-emu
   ];
 }
