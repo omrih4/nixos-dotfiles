@@ -4,6 +4,8 @@
   ...
 }: {
   home.packages = with pkgs; [
+    mangohud
+
     (prismlauncher.override {
       additionalLibs = with pkgs; [
         alsa-lib

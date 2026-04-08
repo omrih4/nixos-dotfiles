@@ -112,7 +112,7 @@
 
     uv
     nodejs
-    nodePackages.pnpm
+    pnpm
 
     wineWow64Packages.stable
 

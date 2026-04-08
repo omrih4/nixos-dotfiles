@@ -216,7 +216,33 @@
     type = "Application";
     noDisplay = true;
   };
-  catppuccin.hyprland.enable = true;
+  catppuccin = {
+    hyprland.enable = true;
+    mpv.enable = true;
+  };
+
+  programs.mpv = {
+    enable = true;
+
+    package = (
+      pkgs.mpv.override {
+        mpv-unwrapped = pkgs.mpv-unwrapped.override {
+          waylandSupport = true;
+        };
+
+        scripts = with pkgs.mpvScripts; [
+          uosc
+          thumbfast
+        ];
+      }
+    );
+
+    config = {
+      hwdec = "nvdec";
+      profile = "high-quality";
+      video-sync = "display-resample";
+    };
+  };
   home.packages = with pkgs; [
     # Terminals
     xterm
@@ -243,7 +269,5 @@
     fastfetch
 
     pwvucontrol
-
-    vlc
   ];
 }
