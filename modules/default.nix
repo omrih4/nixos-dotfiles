@@ -36,5 +36,7 @@ in {
     davinci-resolve
 
     stremio-linux-shell
+
+    tidal-hifi
   ];
 }
