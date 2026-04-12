@@ -1,9 +1,22 @@
 {
   pkgs,
+  lib,
   config,
   inputs,
   ...
 }: {
+  gtk = {
+    enable = true;
+    theme.name = "Breeze-Dark";
+    gtk3 = {
+      extraConfig.gtk-application-prefer-dark-theme = true;
+    };
+    gtk4.theme = config.gtk.theme;
+  };
+  dconf.settings."org/gnome/desktop/interface" = {
+    gtk-theme = lib.mkForce "Breeze";
+    color-scheme = "prefer-dark";
+  };
   wayland.windowManager.hyprland = {
     enable = true;
     systemd = {
@@ -217,6 +230,8 @@
     noDisplay = true;
   };
   catppuccin = {
+    gtk.icon.enable = true;
+    qt5ct.enable = true;
     hyprland.enable = true;
     mpv.enable = true;
   };
