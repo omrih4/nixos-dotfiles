@@ -144,10 +144,11 @@
 
           # take screenshot - prntscrn or super-shift-p
           ", Print, exec, grim -g \"$(slurp -d)\" - | wl-copy"
+          "$mod ALT, P, exec, grim - | wl-copy"
           "$mod SHIFT, P, exec, grim -g \"$(slurp -d)\" - | wl-copy"
 
           # deafen discord
-          ", F7, exec, equibop --toggle-deafen"
+          ", F7, exec, sh ~/scripts/deafen-discord.sh"
         ]
         ++ (
           # workspaces
@@ -228,6 +229,9 @@
     exec = "${pkgs.kdePackages.plasma-workspace}/bin/xembedsniproxy %U";
     type = "Application";
     noDisplay = true;
+  };
+  home.file."${config.home.homeDirectory}/scripts/deafen-discord.sh" = {
+    source = ../scripts/deafen-discord.sh;
   };
   catppuccin = {
     gtk.icon.enable = true;

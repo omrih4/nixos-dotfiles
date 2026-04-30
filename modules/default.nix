@@ -21,7 +21,7 @@ in {
     mongodb-compass
     jetbrains.idea
 
-    equibop
+    vesktop
 
     blockbench
 
