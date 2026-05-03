@@ -61,6 +61,8 @@
 
   services.flatpak.enable = true;
 
+  programs.dconf.enable = true;
+
   programs.seahorse.enable = true;
   services.gnome.gnome-keyring.enable = true;
   services.gnome.gcr-ssh-agent.enable = true;
@@ -120,10 +122,6 @@
 
     # Allow mounting iphone
     libimobiledevice
-
-    (pkgs.ollama.override {
-      acceleration = "cuda";
-    })
   ];
   environment.localBinInPath = true;
   programs.nix-ld = {
