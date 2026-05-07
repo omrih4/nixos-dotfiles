@@ -30,6 +30,7 @@
       monitor = [
         "eDP-1,preferred,auto,1.2"
         "DP-3,1920x1080@320,auto,1"
+        "HDMI-A-1,1920x1080@120,auto,1"
       ];
 
       xwayland = {

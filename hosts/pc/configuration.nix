@@ -12,6 +12,16 @@
 
   networking.hostName = "pc";
 
+  boot.kernelParams = ["drm.edid_firmware=HDMI-A-1:edid/EDID.bin" "video=HDMI-A-1:1920x1080@120D"];
+  hardware.firmware = [
+    (
+      pkgs.runCommand "EDID.bin" {} ''
+        mkdir -p $out/lib/firmware/edid
+        cp ${./EDID.bin} $out/lib/firmware/edid/EDID.bin
+      ''
+    )
+  ];
+
   services.sunshine = {
     enable = true;
     autoStart = true;
