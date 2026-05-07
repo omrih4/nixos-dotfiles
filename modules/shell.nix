@@ -7,6 +7,8 @@
   programs.bash = {
     enable = true;
     shellAliases = {
+      "jarvis," = "sudo";
+
       btw = "echo i use nix btw";
 
       ls = "${pkgs.eza}/bin/eza";
