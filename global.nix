@@ -28,6 +28,13 @@
     };
   };
 
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 8 * 1024;
+    }
+  ];
+
   services.locate.enable = true;
 
   networking.networkmanager.enable = true;
