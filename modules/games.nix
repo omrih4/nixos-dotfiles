@@ -4,6 +4,8 @@
   ...
 }: {
   home.packages = with pkgs; [
+    lutris
+
     mangohud
 
     (prismlauncher.override {

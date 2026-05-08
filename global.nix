@@ -9,6 +9,15 @@
     trusted-public-keys = ["nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" "nvf.cachix.org-1:GMQWiUhZ6ux9D5CvFFMwnc2nFrUHTeGaXRlVBXo+naI="];
   };
   nix.package = pkgs.lixPackageSets.stable.lix;
+  nixpkgs.overlays = [
+    # Skipping tests while upstream sorts it out, revert once
+    # Hydra consistently builds openldap green.
+    (final: prev: {
+      openldap = prev.openldap.overrideAttrs (_: {
+        doCheck = !prev.stdenv.hostPlatform.isi686;
+      });
+    })
+  ];
 
   boot = {
     plymouth = {
