@@ -138,7 +138,6 @@
     wget
 
     _7zz
-    networkmanagerapplet
 
     uv
     nodejs
@@ -147,6 +146,7 @@
     wineWow64Packages.stable
 
     dnsmasq
+    networkmanagerapplet
 
     # Allow mounting iphone
     libimobiledevice
