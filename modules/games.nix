@@ -43,8 +43,12 @@
 
     osu-lazer-bin
 
-    inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.rocket-league
-
+    (heroic.override {
+      extraPkgs = pkgs':
+        with pkgs'; [
+          gamemode
+        ];
+    })
     dolphin-emu
   ];
 }
