@@ -12,7 +12,7 @@
 
   networking.hostName = "pc";
 
-  boot.kernelParams = ["drm.edid_firmware=HDMI-A-1:edid/EDID.bin" "video=HDMI-A-1:1920x1080@120D"];
+  # boot.kernelParams = ["drm.edid_firmware=HDMI-A-1:edid/EDID.bin" "video=HDMI-A-1:1920x1080@120D"];
   hardware.firmware = [
     (
       pkgs.runCommand "EDID.bin" {} ''

@@ -38,6 +38,14 @@
   services.locate.enable = true;
 
   networking.networkmanager.enable = true;
+  networking.networkmanager.dns = "none";
+  networking.nameservers = [
+    "9.9.9.9"
+    "149.112.112.112"
+    "2620:fe::fe"
+    "2620:fe::9"
+  ];
+
   hardware.bluetooth.enable = true;
 
   # Enable access to epomaker keyboard
@@ -119,6 +127,9 @@
   environment.systemPackages = with pkgs; [
     vim
     wget
+
+    _7zz
+    networkmanagerapplet
 
     uv
     nodejs
